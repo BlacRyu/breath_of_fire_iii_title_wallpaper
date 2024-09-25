@@ -1,0 +1,20 @@
+{
+	"version" : 1,
+	"replacementkey" : "omg_xray",
+	"name" : "OMG X-Ray",
+	"description" : "Just fixing a little bug in the original xray effect that made the light look a bit wonky.",
+	"group" : "interactive",
+	"preview" : "preview/project.json",
+	"passes" :
+	[
+		{
+			"material" : "materials/effects/omg_xray.json"
+		}
+	],
+	"dependencies" :
+	[
+		"materials/effects/omg_xray.json",
+		"shaders/effects/omg_xray.frag",
+		"shaders/effects/omg_xray.vert"
+	]
+}
