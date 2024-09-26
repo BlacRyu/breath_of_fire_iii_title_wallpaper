@@ -1,6 +1,7 @@
 {
+	"approved" : true,
 	"contentrating" : "Everyone",
-	"description" : "The mural from the title screen of Breath of Fire III (also seen in the game world at a certain point) depicting the heroes and villains from the first game in the series. \n\nReacts to the cursor position with motion and light.\n\n\n\nTags: Video Game videogame Breath Of Fire 3 III BoF3 Ryu Nina Dragon Mural Painting Dungeon Dark Fantasy RPG JRPG Japan Japanese Role Playing Game",
+	"description" : "The mural from the title screen of Breath of Fire III (also seen in the game world at a certain point) depicting the heroes and villains from the first game in the series. \r\n\r\nReacts to the cursor position with motion and light.\r\n\r\n\r\n\r\nTags: Video Game Videogame Retro Playstation 1 PSX PS1 PSOne Breath Of Fire 3 III BoF3 Ryu Nina Dragon Mural Painting Dungeon Wall Stone Dark Fantasy RPG JRPG Japan Japanese Role Playing Game Dragnier Wide Ultrawide",
 	"file" : "scene.json",
 	"general" : 
 	{
@@ -8,8 +9,8 @@
 		{
 			"disablescrolling" : 
 			{
-				"index" : 4,
-				"order" : 104,
+				"index" : 5,
+				"order" : 105,
 				"text" : "Disable Scrolling",
 				"type" : "bool",
 				"value" : false
@@ -17,10 +18,10 @@
 			"lightflickeramount" : 
 			{
 				"fraction" : true,
-				"index" : 2,
+				"index" : 3,
 				"max" : 0.5,
 				"min" : 0,
-				"order" : 102,
+				"order" : 103,
 				"precision" : 3,
 				"step" : 0.01,
 				"text" : "Light Flicker Amount",
@@ -30,10 +31,10 @@
 			"lightsize" : 
 			{
 				"fraction" : true,
-				"index" : 0,
+				"index" : 1,
 				"max" : 1.5,
 				"min" : 0,
-				"order" : 100,
+				"order" : 101,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "Light Size",
@@ -42,11 +43,19 @@
 			},
 			"lighttint" : 
 			{
-				"index" : 1,
-				"order" : 101,
+				"index" : 2,
+				"order" : 102,
 				"text" : "Light Tint",
 				"type" : "color",
 				"value" : "1 0.7529411764705882 0.5215686274509804"
+			},
+			"music" : 
+			{
+				"index" : 0,
+				"order" : 100,
+				"text" : "Music",
+				"type" : "bool",
+				"value" : true
 			},
 			"schemecolor" : 
 			{
@@ -58,7 +67,7 @@
 			},
 			"texturefiltering" : 
 			{
-				"index" : 3,
+				"index" : 4,
 				"options" : 
 				[
 					{
@@ -70,7 +79,7 @@
 						"value" : "bilinear"
 					}
 				],
-				"order" : 103,
+				"order" : 104,
 				"text" : "Texture Filtering",
 				"type" : "combo",
 				"value" : "nearest"
@@ -83,7 +92,8 @@
 	"tags" : [ "Game" ],
 	"title" : "Breath of Fire III Mural",
 	"type" : "scene",
-	"version" : 1,
+	"version" : 2,
+	"visibility" : "public",
 	"workshopid" : "3337462171",
 	"workshopurl" : "steam://url/CommunityFilePage/3337462171"
 }

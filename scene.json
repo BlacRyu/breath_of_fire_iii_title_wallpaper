@@ -61,11 +61,10 @@
 		},
 		{
 			"id" : 59,
-			"locktransforms" : true,
 			"name" : "Mural Root",
 			"origin" : 
 			{
-				"script" : "'use strict';\nconst OMGHelpers = shared.OMGHelpers;\n\n/** Stops the mural from sliding at all. */\nlet scrollingDisabled = false;\n\n/** Layer's target X position when cursor is on the left side of the screen. */\nlet leftExtent = 0.0;\n/** Layer's target X position when cursor is on the right side of the screen. */\nlet rightExtent = 0.0;\n\nlet targetX = 0.0;\n\n/** How fast the mural can slide. */\nconst maxSpeed = 200.0;\n\n/** How quickly the mural movement ramps up based on cursor distance. */\nconst accel = 0.3;\n\n\n/**\n * Slide mural towards the cursor\n */\nexport function update() {\n\tif (!scrollingDisabled) {\n\t\tcalcTargetX();\n\t\tconst speed = OMGHelpers.clamp((targetX - thisLayer.origin.x) * accel, -maxSpeed, maxSpeed) * engine.frametime;\n\t\tthisLayer.origin = new Vec3(thisLayer.origin.x + speed, thisLayer.origin.y, 0.0);\n\t}\n}\n\n\n/**\n * Check initial screen bounds and cursor position.\n */\nexport function init() {\n\tcalcBounds();\n\tcalcTargetX();\n\tthisLayer.origin = new Vec3(targetX, engine.canvasSize.y / 2.0, 0.0);\n}\n\n\n/**\n * @param {Vec2} New screen dimensions\n */\nexport function resizeScreen(size) {\n\tcalcBounds();\n\tcalcTargetX();\n}\n\nfunction calcBounds() {\n\tconst screenAspectRatio = engine.screenResolution.x / engine.screenResolution.y;\n\tconst muralLayer = thisScene.getLayer(\"Mural\");\n\tconst muralAspectRatio = muralLayer.size.x / muralLayer.size.y;\n\t// Screen is wider than the mural. No scrolling needed.\n\tif (screenAspectRatio > muralAspectRatio) {\n\t\tleftExtent = rightExtent = engine.canvasSize.x / 2.0;\n\t}\n\telse {\n\t\tconst screenWidth = screenAspectRatio * engine.canvasSize.y;\n\t\tconst muralWidth = muralAspectRatio * engine.canvasSize.y;\n\t\tconst sideBuffer = (muralWidth - screenWidth) / 2.0;\n\t\tleftExtent = engine.canvasSize.x / 2.0 + sideBuffer;\n\t\trightExtent = engine.canvasSize.x / 2.0 - sideBuffer;\n\t}\n\treturn new Vec2(leftExtent, rightExtent);\n}\n\nfunction calcTargetX() {\n\tconst lerp = input.cursorScreenPosition.x / engine.screenResolution.x;\n\ttargetX = OMGHelpers.lerp(leftExtent, rightExtent, lerp);\n\ttargetX = OMGHelpers.clamp(targetX, rightExtent, leftExtent);\n\treturn targetX;\n}\n\n\n/**\n * @param {Object} changedUserProperties - only includes user properties that were recently changed!\n */\nexport function applyUserProperties(changedUserProperties) {\n\tif (changedUserProperties.disablescrolling !== undefined) {\n\t\tscrollingDisabled = changedUserProperties.disablescrolling;\n\t\tif (scrollingDisabled) {\n\t\t\tthisLayer.origin = new Vec3(engine.canvasSize.x / 2.0, engine.canvasSize.y / 2.0, 0.0);\n\t\t}\n\t}\n}\n",
+				"script" : "'use strict';\nconst OMGHelpers = shared.OMGHelpers;\n\n/** Stops the mural from sliding at all. */\nlet scrollingDisabled = false;\n\n/** Layer's target X position when cursor is on the left side of the screen. */\nlet leftExtent = 0.0;\n/** Layer's target X position when cursor is on the right side of the screen. */\nlet rightExtent = 0.0;\n\nlet targetX = 0.0;\n\n/** How fast the mural can slide. */\nconst maxSpeed = 150.0;\n\n/** How quickly the mural movement ramps up based on cursor distance. */\nconst accel = 0.6;\n\n\n/**\n * Slide mural towards the cursor\n */\nexport function update() {\n\tif (!scrollingDisabled) {\n\t\tcalcTargetX();\n\t\tconst speed = OMGHelpers.clamp((targetX - thisLayer.origin.x) * accel, -maxSpeed, maxSpeed) * engine.frametime;\n\t\tthisLayer.origin = new Vec3(thisLayer.origin.x + speed, thisLayer.origin.y, 0.0);\n\t}\n}\n\n\n/**\n * Check initial screen bounds and cursor position.\n */\nexport function init() {\n\tcalcBounds();\n\tcalcTargetX();\n\tthisLayer.origin = new Vec3(targetX, engine.canvasSize.y / 2.0, 0.0);\n}\n\n\n/**\n * @param {Vec2} New screen dimensions\n */\nexport function resizeScreen(size) {\n\tcalcBounds();\n\tcalcTargetX();\n}\n\nfunction calcBounds() {\n\tconst screenAspectRatio = engine.screenResolution.x / engine.screenResolution.y;\n\tconst muralLayer = thisScene.getLayer(\"Mural\");\n\tconst muralAspectRatio = muralLayer.size.x / muralLayer.size.y;\n\t// Screen is wider than the mural. No scrolling needed.\n\tif (screenAspectRatio > muralAspectRatio) {\n\t\tleftExtent = rightExtent = engine.canvasSize.x / 2.0;\n\t}\n\telse {\n\t\tconst screenWidth = screenAspectRatio * engine.canvasSize.y;\n\t\tconst muralWidth = muralAspectRatio * engine.canvasSize.y;\n\t\tconst sideBuffer = (muralWidth - screenWidth) / 2.0;\n\t\tleftExtent = engine.canvasSize.x / 2.0 + sideBuffer;\n\t\trightExtent = engine.canvasSize.x / 2.0 - sideBuffer;\n\t}\n\treturn new Vec2(leftExtent, rightExtent);\n}\n\nfunction calcTargetX() {\n\tconst lerp = input.cursorScreenPosition.x / engine.screenResolution.x;\n\ttargetX = OMGHelpers.lerp(leftExtent, rightExtent, lerp);\n\ttargetX = OMGHelpers.clamp(targetX, rightExtent, leftExtent);\n\treturn targetX;\n}\n\n\n/**\n * @param {Object} changedUserProperties - only includes user properties that were recently changed!\n */\nexport function applyUserProperties(changedUserProperties) {\n\tif (changedUserProperties.disablescrolling !== undefined) {\n\t\tscrollingDisabled = changedUserProperties.disablescrolling;\n\t\tif (scrollingDisabled) {\n\t\t\tthisLayer.origin = new Vec3(engine.canvasSize.x / 2.0, engine.canvasSize.y / 2.0, 0.0);\n\t\t}\n\t}\n}\n",
 				"value" : "496.00000 96.00000 0.00000"
 			}
 		},
@@ -237,6 +236,43 @@
 			"parent" : 59,
 			"scale" : "0.25000 0.25000 0.25000",
 			"size" : "3968.00000 768.00000"
+		},
+		{
+			"id" : 58,
+			"name" : "Music Logic",
+			"origin" : "496.00000 96.00000 0.00000",
+			"visible" : 
+			{
+				"script" : "'use strict';\n\n/**\n * A callback function which cancels the timer that would start the looping music\n * @type Function\n */\nlet cancelMusicTimer = undefined;\n\n/**\n * @param {Object} changedUserProperties - only includes user properties that were recently changed!\n */\nexport function applyUserProperties(changedUserProperties) {\n\tlet introMusic = thisScene.getLayer(\"Music Intro\");\n\tlet loopMusic = thisScene.getLayer(\"Music Loop\");\n\tif (changedUserProperties !== undefined && changedUserProperties.music !== undefined) {\n\t\t// Clear any existing music timers\n\t\tif (cancelMusicTimer !== undefined) {\n\t\t\tcancelMusicTimer();\n\t\t}\n\n\t\tif (changedUserProperties.music) {\n\t\t\tintroMusic.play();\n\t\t\tloopMusic.stop();\n\t\t\t// When intro music ends, start looping audio\n\t\t\tcancelMusicTimer = engine.setTimeout(() => {\n\t\t\t\tintroMusic.stop();\n\t\t\t\tloopMusic.play();\n\t\t\t}, 125720);\n\t\t}\n\t\telse {\n\t\t\tintroMusic.stop();\n\t\t\tloopMusic.stop();\n\t\t}\n\t}\n}\n",
+				"value" : true
+			}
+		},
+		{
+			"id" : 33,
+			"maxtime" : 5.0,
+			"mintime" : 1.0,
+			"muteineditor" : true,
+			"name" : "Music Intro",
+			"playbackmode" : "single",
+			"sound" : [ "sounds/For the Dragons - Intro.ogg" ],
+			"startsilent" : false,
+			"volume" : 0.5
+		},
+		{
+			"id" : 38,
+			"maxtime" : 5.0,
+			"mintime" : 1.0,
+			"muteineditor" : true,
+			"name" : "Music Loop",
+			"origin" : 
+			{
+				"script" : "'use strict';\n\n/**\n * A callback function which cancels the timer that would start the looping music\n * @type Function\n */\nlet cancelMusicTimer = undefined;\n\n/**\n * @param {Object} changedUserProperties - only includes user properties that were recently changed!\n */\nexport function applyUserProperties(changedUserProperties) {\n\tlet introMusic = thisScene.getLayer(\"Music Intro\");\n\tlet loopMusic = thisLayer;\n\tif (changedUserProperties !== undefined && changedUserProperties.music !== undefined) {\n\t\t// Clear any existing music timers\n\t\tif (cancelMusicTimer !== undefined) {\n\t\t\tcancelMusicTimer();\n\t\t}\n\n\t\tif (changedUserProperties.music) {\n\t\t\tintroMusic.play();\n\t\t\tloopMusic.stop();\n\t\t\t// When intro music ends, start looping audio\n\t\t\tcancelMusicTimer = engine.setTimeout(() => {\n\t\t\t\tintroMusic.stop();\n\t\t\t\tloopMusic.play();\n\t\t\t}, 125720);\n\t\t}\n\t\telse {\n\t\t\tintroMusic.stop();\n\t\t\tloopMusic.stop();\n\t\t}\n\t}\n}\n",
+				"value" : "0.00000 0.00000 0.00000"
+			},
+			"playbackmode" : "loop",
+			"sound" : [ "sounds/For the Dragons - Loop.ogg" ],
+			"startsilent" : true,
+			"volume" : 0.5
 		}
 	],
 	"version" : 4
