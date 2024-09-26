@@ -238,6 +238,71 @@
 			"size" : "3968.00000 768.00000"
 		},
 		{
+			"alpha" : 
+			{
+				"animation" : 
+				{
+					"c0" : 
+					[
+						{
+							"back" : 
+							{
+								"enabled" : true,
+								"x" : -1,
+								"y" : -0.0
+							},
+							"frame" : 0,
+							"front" : 
+							{
+								"enabled" : false,
+								"x" : 0.50833333,
+								"y" : 0
+							},
+							"lockangle" : false,
+							"locklength" : false,
+							"value" : 1
+						},
+						{
+							"back" : 
+							{
+								"enabled" : true,
+								"magic" : true,
+								"x" : -0.50166667,
+								"y" : -0.0
+							},
+							"frame" : 300,
+							"front" : 
+							{
+								"enabled" : true,
+								"magic" : true,
+								"x" : 1,
+								"y" : 0
+							},
+							"lockangle" : true,
+							"locklength" : true,
+							"value" : 0
+						}
+					],
+					"options" : 
+					{
+						"fps" : 30,
+						"length" : 300,
+						"mode" : "single",
+						"name" : "Fade In Animation",
+						"wraploop" : null
+					}
+				},
+				"value" : 1.0
+			},
+			"castshadow" : false,
+			"color" : "0.00000 0.00000 0.00000",
+			"id" : 39,
+			"image" : "models/util/solidlayer.json",
+			"name" : "Fade In",
+			"origin" : "496.00000 96.00000 0.00000",
+			"size" : "10000.00000 10000.00000"
+		},
+		{
 			"id" : 58,
 			"name" : "Music Logic",
 			"origin" : "496.00000 96.00000 0.00000",
